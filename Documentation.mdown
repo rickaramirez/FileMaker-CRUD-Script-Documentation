@@ -23,18 +23,18 @@ With the CRUDFV script, we have the ability execute those processes in a standar
 
 A Create call would look like this:
 
-From file a01_PERSON:
+For file a01_PERSON:
 
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "C" )
-	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
 	& # ( "UpdateDict" ; 
 	    # ( "First Name" ; "Michael" )
 		& # ( "Last Name" ; "Phillips" )	
 		& # ( "Gender" ; "M" )
 		)
-
-This will create a new record in A_PERSON, set the field First Name with the value Michael, Last Name with Phillips, and Gender with M, and then return a script result with the Worker Name FML and UID values.
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+	
+This will create a new record in A_PERSON, set the field First Name with the value "Michael", Last Name with "Phillips", and Gender with "M", and then return a script result with the Worker Name FML and UID values.
 		
 ### Read
 
@@ -44,16 +44,23 @@ This will create a new record in A_PERSON, set the field First Name with the val
 
 **Applicable parameters:** 
 
+* SearchParameters
 * ReadFieldList
 
 **Description:** Read will return a dictionary of values for each record in the found set.
 
 A Read call would look like this:
 
-From file a01_PERSON:
+For file a01_PERSON:
 
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "R" )
+	& # ( "SearchParameters" ;
+	    # ( "Request" ;
+	        # ( "Address City" ; "Brooklyn" )
+	      & # ( "Address Zip5" ; "11205" )
+	      )
+	    )
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
 		
 This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
@@ -66,17 +73,61 @@ This will return a dictionary of data with the Worker Name FML and UID of each A
 
 **Applicable parameters:** 
 
+* SearchParameters
 * UpdateDict
 * ReadFieldList
 
 **Description:** Update will set the specified fields with the specified values for each record in the found set.  By default, the script will only update one record, and if more than one record is in the found set, it will return an error.  If you would like to update multiple records, specify the optional parameter `TRUE`.
 
-A Read call would look like this:
+An Update call would look like this:
 
-From file a01_PERSON:
+For file a01_PERSON:
 
 	  # ( "TableName" ; "A_PERSON" )
-	& # ( "Method" ; "R" )
-	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+	& # ( "Method" ; "U" )
+	& # ( "SearchParameters" ;
+	      # ( "ID" ; "1669688" )
+	    )
+	& # ( "UpdateDict" ; 
+	      # ( "First Name" ; "Michael" )
+	  	& # ( "Last Name" ; "Phillips" )	
+	  	& # ( "Gender" ; "M" )
+	  	)	
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" )
+	& # ( "UpdateMultiple" ; TRUE )
+	
+This will update each record in the found set to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the records have been updated, the script will return a dictionary of values for each record containing Worker Name FML and UID.
 		
-This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
+### Update
+
+**Method:** D
+
+**Sub-operations:** none
+
+**Applicable parameters:** 
+
+* SearchParameters
+
+**Description:** Update will set the specified fields with the specified values for each record in the found set.  By default, the script will only update one record, and if more than one record is in the found set, it will return an error.  If you would like to update multiple records, specify the optional parameter `TRUE`.
+
+An Update call would look like this:
+
+For file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "U" )
+	& # ( "SearchParameters" ;
+	    # ( "Request" ;
+	        # ( "Address City" ; "Brooklyn" )
+	      & # ( "Address Zip5" ; "11205" )
+	      )
+	    )
+	& # ( "UpdateDict" ; 
+	      # ( "First Name" ; "Michael" )
+	  	& # ( "Last Name" ; "Phillips" )	
+	  	& # ( "Gender" ; "M" )
+	  	)	
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" )
+	& # ( "UpdateMultiple" ; TRUE )
+	
+This will update each record in the found set to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the records have been updated, the script will return a dictionary of values for each record containing Worker Name FML and UID.
