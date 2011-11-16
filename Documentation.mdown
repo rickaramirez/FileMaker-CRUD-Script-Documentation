@@ -120,3 +120,73 @@ For file a01_PERSON:
 	    )
 	
 This will find the record with the key field value of "1669688" and delete it.
+		
+### Find
+
+**Method:** F
+
+**Sub-operations:** R
+
+**Applicable parameters:** 
+
+* SearchParameters
+
+**Description:** Find will perform a search in the target table.
+
+A Find call would look like this:
+
+For file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "D" )
+	& # ( "SearchParameters" ;
+	      # ( "Request" ;
+	          # ( "Address City" ; "Brooklyn" )
+	        )
+	    & # ( "Request" ;
+	          # ( "Address State" ; "NY")
+	        & # ( "Omit" ; 1 )
+	        ) 
+	    )
+	
+This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field, and will return a result count.
+
+### View
+
+**Method:** V
+
+**Sub-operations:** F
+
+**Applicable parameters:** 
+
+* SearchParameters
+* ViewDict
+
+**Description:** Find will perform a search in the target table.
+
+A Find call would look like this:
+
+For file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "D" )
+	& # ( "SearchParameters" ;
+	      # ( "Request" ;
+	          # ( "Address City" ; "Brooklyn" )
+	        )
+	    & # ( "Request" ;
+	          # ( "Address State" ; "NY")
+	        & # ( "Omit" ; 1 )
+	        ) 
+	    )
+	& # ( "SearchParameters" ;
+	      # ( "Request" ;
+	          # ( "Address City" ; "Brooklyn" )
+	        )
+	    & # ( "Request" ;
+	          # ( "Address State" ; "NY")
+	        & # ( "Omit" ; 1 )
+	        ) 
+	    )
+	
+This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field, and will return a result count.
