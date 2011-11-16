@@ -1,0 +1,82 @@
+# Implementation and use of the CRUD Script functionality
+
+## Overview of CRUDFV
+
+CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we've made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.
+
+With the CRUDFV script, we have the ability execute those processes in a standardized, consistent, controlled and rapid way, all while writing less code, making less layouts, and making less table occurrences.  The CRUDFV script essentially serves as an API (or Application Programming Interface) for each file, allowing you to fully interact with the data in the file without having to rewrite those interactions every time you want to activate them.
+
+## The Six Methods of CRUDFV
+
+### Create
+
+**Method:** C
+
+**Sub-operations:** U, R
+
+**Applicable parameters:** 
+
+* ReadFieldList
+* UpdateDict
+
+**Description:** Create will make a new record in the destination table.  Optionally, it will update any fields that you tell it to update, and can optionally return to you a list of values form that new record, such as the resulting Primary Key value.
+
+A Create call would look like this:
+
+From file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "C" )
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+	& # ( "UpdateDict" ; 
+	    # ( "First Name" ; "Michael" )
+		& # ( "Last Name" ; "Phillips" )	
+		& # ( "Gender" ; "M" )
+		)
+
+This will create a new record in A_PERSON, set the field First Name with the value Michael, Last Name with Phillips, and Gender with M, and then return a script result with the Worker Name FML and UID values.
+		
+### Read
+
+**Method:** R
+
+**Sub-operations:** none
+
+**Applicable parameters:** 
+
+* ReadFieldList
+
+**Description:** Read will return a dictionary of values for each record in the found set.
+
+A Read call would look like this:
+
+From file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "R" )
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+		
+This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
+		
+### Update
+
+**Method:** U
+
+**Sub-operations:** R
+
+**Applicable parameters:** 
+
+* UpdateDict
+* ReadFieldList
+
+**Description:** Update will set the specified fields with the specified values for each record in the found set.  By default, the script will only update one record, and if more than one record is in the found set, it will return an error.  If you would like to update multiple records, specify the optional parameter `TRUE`.
+
+A Read call would look like this:
+
+From file a01_PERSON:
+
+	  # ( "TableName" ; "A_PERSON" )
+	& # ( "Method" ; "R" )
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+		
+This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
