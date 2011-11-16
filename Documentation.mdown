@@ -179,14 +179,10 @@ For file a01_PERSON:
 	        & # ( "Omit" ; 1 )
 	        ) 
 	    )
-	& # ( "SearchParameters" ;
-	      # ( "Request" ;
-	          # ( "Address City" ; "Brooklyn" )
-	        )
-	    & # ( "Request" ;
-	          # ( "Address State" ; "NY")
-	        & # ( "Omit" ; 1 )
-	        ) 
+	& # ( "ViewParameters" ; 
+        # ( "DestinationLayoutName" ; "A_PERSON Main__" )
+      & # ( "NewWindow" ; TRUE )
+      & # ( "WindowAlignCenter" ; TRUE )
 	    )
-	
-This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field, and will return a result count.
+
+This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
