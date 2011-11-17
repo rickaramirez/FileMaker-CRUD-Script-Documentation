@@ -10,10 +10,8 @@ With the CRUD script, we have the ability execute those processes in a standardi
 
 ### Create
 
-**Method:** C
-
-**Sub-operations:** U, R
-
+**Method:** C  
+**Sub-operations:** U, R  
 **Applicable parameters:** 
 
 * ReadFieldList
@@ -38,10 +36,8 @@ This will create a new record in A_PERSON, set the field First Name with the val
 		
 ### Read
 
-**Method:** R
-
-**Sub-operations:** none
-
+**Method:** R  
+**Sub-operations:** none  
 **Applicable parameters:** 
 
 * SearchParameters
@@ -67,10 +63,8 @@ This will return a dictionary of data with the Worker Name FML and UID of each A
 		
 ### Update
 
-**Method:** U
-
-**Sub-operations:** R
-
+**Method:** U  
+**Sub-operations:** R  
 **Applicable parameters:** 
 
 * SearchParameters
@@ -99,10 +93,8 @@ This will find the record with the key field value (in this case, UID) of "16696
 		
 ### Update
 
-**Method:** D
-
-**Sub-operations:** none
-
+**Method:** D  
+**Sub-operations:** none  
 **Applicable parameters:** 
 
 * SearchParameters
@@ -123,10 +115,8 @@ This will find the record with the key field value of "1669688" and delete it.
 		
 ### Find
 
-**Method:** F
-
-**Sub-operations:** R
-
+**Method:** F  
+**Sub-operations:** R  
 **Applicable parameters:** 
 
 * SearchParameters
@@ -153,10 +143,8 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 ### View
 
-**Method:** V
-
-**Sub-operations:** F
-
+**Method:** V  
+**Sub-operations:** F  
 **Applicable parameters:** 
 
 * SearchParameters
@@ -191,98 +179,78 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 ### TableName
 
-**Example:** `# ( "TableName" ; "A_PERSON" )`
-
-**Value Type:** String
-
+**Example:** `# ( "TableName" ; "A_PERSON" )`  
+**Value Type:** String  
 **Description:** The name of the target table for the operation.
 
 ### TableID
 
-**Example:** `# ( "TableID" ; 1065149 )`
-
-**Value Type:** Number
-
+**Example:** `# ( "TableID" ; 1065149 )`  
+**Value Type:** Number  
 **Description:** The FileMaker internal ID of the target table for the operation.  This can be identified by using the following calculation: `FM_Name_ID ( Get ( LayoutTableName ) ; "T" ; "" ; "" )` when you are on a layout based on the target table.  The resulting ID is the unique FileMaker internal ID to identify the table, and will endure a table name change.
 
 ### Method
 
-**Example:** `# ( "Method" ; "R" )`
-
-**Value Type:** String
-
+**Example:** `# ( "Method" ; "R" )`  
+**Value Type:** String  
 **Description:** The abbreviation of the method to be performed.  Values can be C (Create), R (Read), U (Update), D (Delete), F (Find) or V (View).
 
 ### ReadFieldList
 
-**Example:** `# ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )`
-
-**Value Type:** List
-
+**Example:** `# ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )`  
+**Value Type:** List  
 **Description:** A return-separated list of human names for the fields you want to be returned as the script result.  If this value is not specified, no values will be returned.  If you want all available criteria to be returned for the record, you can pass in a dictionary item "All" as such: `# ( "ReadFieldList" ; # ( "All" ; TRUE ))`.
 
 ### UpdateDict
 
-**Example:** `# ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )`
-
-**Value Type:** Dictionary
-
+**Example:** `# ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )`  
+**Value Type:** Dictionary  
 **Description:** A dictionary of human field names and values to be updated in the target record.  Multiple dictionary items should be specified to update multiple fields.
 
 ### SearchRequests
 
-**Example:** `# ( "SearchRequests" ; # ( "Request" ; # ( "First Name" ; "Michael") ) )`
-
-**Value Type:** Dictionary
-
+**Example:** `# ( "SearchRequests" ; # ( "Request" ; # ( "First Name" ; "Michael") ) )`  
+**Value Type:** Dictionary  
 **Description:** A dictionary of search requests to be performed.  Each request is defined by a "Request" dictionary, and multiple can be specified within the "SearchRequests" dictionary.  Each Request can contain multiple search criteria for the search, and can also contain an optional `# ( "Omit" ; TRUE )` parameter to specify the request as an omit request.
 
 Additionally, if you would like to find one record using the primary key value, you can pass in a dictionary item in "SearchRequests" as such: `# ( "ID" ; "1669688")`.  This command will return to you one and only one record. 
 
 ### ViewDict
 
-**Example:** `# ( "ViewDict" ; # ( "NewWindow" ; TRUE ) & # ( "WindowTitle" ; "This New Window" ) )`
-
-**Value Type:** Dictionary
-
+**Example:** `# ( "ViewDict" ; # ( "NewWindow" ; TRUE ) & # ( "WindowTitle" ; "This New Window" ) )`  
+**Value Type:** Dictionary  
 **Description:** A dictionary to specify the parameters for the view function.  The valid parameters that can be specified are as follows:
 
-**DestinationLayoutID** _[String]_ - The FileMaker internal ID of the destination layout
-**DestinationLayoutName** _[String]_ - The name of the destination layout
-**NewWindow** _[Boolean]_ - The name of the destination layout
-**WindowAlignCenter** _[Boolean]_ - Center the target window on the screen
-**WindowAlignLeft** _[Boolean]_ - Snap the window to the left side of the screen
-**WindowAlignRight** _[Boolean]_ - Snap the window to the right side of the screen
-**WindowAlignTop** _[Boolean]_ - Snap the window to the top of the screen
-**WindowCascade** _[Boolean]_ - Move the target window to the right 22 pixels and down 22 pixels
-**ResizeToFit** _[Boolean]_ - Resize the window to fit the contents of the window
-**StatusAreaShow** _[Boolean]_ - Show the status area in the target window
-**StatusAreaHide** _[Boolean]_ - Hide the status area in the target window
-**WindowTitle** _[String]_ - Set the name of the target window
+**DestinationLayoutID** _[String]_ - The FileMaker internal ID of the destination layout  
+**DestinationLayoutName** _[String]_ - The name of the destination layout  
+**NewWindow** _[Boolean]_ - The name of the destination layout  
+**WindowAlignCenter** _[Boolean]_ - Center the target window on the screen  
+**WindowAlignLeft** _[Boolean]_ - Snap the window to the left side of the screen  
+**WindowAlignRight** _[Boolean]_ - Snap the window to the right side of the screen  
+**WindowAlignTop** _[Boolean]_ - Snap the window to the top of the screen  
+**WindowCascade** _[Boolean]_ - Move the target window to the right 22 pixels and down 22 pixels  
+**ResizeToFit** _[Boolean]_ - Resize the window to fit the contents of the window  
+**StatusAreaShow** _[Boolean]_ - Show the status area in the target window  
+**StatusAreaHide** _[Boolean]_ - Hide the status area in the target window  
+**WindowTitle** _[String]_ - Set the name of the target window  
 
 ### UpdateMultiple
 
-**Example:** `# ( "UpdateMultiple" ; TRUE )`
-
-**Value Type:** Boolean
-
+**Example:** `# ( "UpdateMultiple" ; TRUE )`  
+**Value Type:** Boolean  
 **Description:** This will allow the CRUD Script to update all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
 
 ### DeleteMultiple
 
-**Example:** `# ( "DeleteMultiple" ; TRUE )`
-
-**Value Type:** Boolean
-
+**Example:** `# ( "DeleteMultiple" ; TRUE )`  
+**Value Type:** Boolean  
 **Description:** This will allow the CRUD Script to delete all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
 
 ### UseFoundSet
 
-**Example:** `# ( "UseFoundSet" ; TRUE )`
-
-**Value Type:** Boolean
-
-**Description:** This will use the current found set of records instead of performing a search.
+**Example:** `# ( "UseFoundSet" ; TRUE )`  
+**Value Type:** Boolean  
+**Description:** This will use the current found set of records instead of performing a search.  
 
 ### ShowDialogs
 
@@ -292,7 +260,13 @@ Additionally, if you would like to find one record using the primary key value, 
 
 **Description:** This will allow any dialogs that are specified for debugging purposes to appear to the user.
 
+### UseWindowName
 
+**Example:** `# ( "UseWindowName" ; "This Window Name" )`
+
+**Value Type:** String
+
+**Description:** This will have the script target a specific window instead of using either the current window or any new windows made.
 
 
 
