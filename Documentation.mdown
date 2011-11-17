@@ -1,5 +1,11 @@
 # Implementation and use of the CRUD Script functionality
 
+## Table of Contents
+
+1. [Overview of CRUD](#overview-of-crud)
+2. [The Six Method of CRUD](#the-six-methods-of-crud)
+3. [CRUD Dictionary Parameters](#crud-dictionary-parameters)
+
 ## Overview of CRUD
 
 CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we've made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.
@@ -175,7 +181,7 @@ For file a01_PERSON:
 
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
 
-## CRUD Dictionary Parameters
+## CRUD Dictionary Parameters {#dict-params}
 
 ### TableName
 
@@ -254,18 +260,14 @@ Additionally, if you would like to find one record using the primary key value, 
 
 ### ShowDialogs
 
-**Example:** `# ( "ShowDialogs" ; TRUE )`
-
-**Value Type:** Boolean
-
+**Example:** `# ( "ShowDialogs" ; TRUE )`  
+**Value Type:** Boolean  
 **Description:** This will allow any dialogs that are specified for debugging purposes to appear to the user.
 
 ### UseWindowName
 
-**Example:** `# ( "UseWindowName" ; "This Window Name" )`
-
-**Value Type:** String
-
+**Example:** `# ( "UseWindowName" ; "This Window Name" )`  
+**Value Type:** String  
 **Description:** This will have the script target a specific window instead of using either the current window or any new windows made.
 
 
