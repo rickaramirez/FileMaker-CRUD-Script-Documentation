@@ -247,23 +247,50 @@ Additionally, if you would like to find one record using the primary key value, 
 
 **Description:** A dictionary to specify the parameters for the view function.  The valid parameters that can be specified are as follows:
 
-* **DestinationLayoutID** _[String]_ - The FileMaker internal ID of the destination layout
-* **DestinationLayoutName** _[String]_ - The name of the destination layout
-* **NewWindow** _[Boolean]_ - The name of the destination layout
-* **WindowAlignCenter** _[Boolean]_ - Center the target window on the screen
-* **WindowAlignLeft** _[Boolean]_ - Snap the window to the left side of the screen
-* **WindowAlignRight** _[Boolean]_ - Snap the window to the right side of the screen
-* **WindowAlignTop** _[Boolean]_ - Snap the window to the top of the screen
-* **WindowCascade** _[Boolean]_ - Move the target window to the right 22 pixels and down 22 pixels
-* **ResizeToFit** _[Boolean]_ - Resize the window to fit the contents of the window
-* **StatusAreaShow** _[Boolean]_ - Show the status area in the target window
-* **StatusAreaHide** _[Boolean]_ - Hide the status area in the target window
-* **WindowTitle** _[String]_ - Set the name of the target window
+**DestinationLayoutID** _[String]_ - The FileMaker internal ID of the destination layout
+**DestinationLayoutName** _[String]_ - The name of the destination layout
+**NewWindow** _[Boolean]_ - The name of the destination layout
+**WindowAlignCenter** _[Boolean]_ - Center the target window on the screen
+**WindowAlignLeft** _[Boolean]_ - Snap the window to the left side of the screen
+**WindowAlignRight** _[Boolean]_ - Snap the window to the right side of the screen
+**WindowAlignTop** _[Boolean]_ - Snap the window to the top of the screen
+**WindowCascade** _[Boolean]_ - Move the target window to the right 22 pixels and down 22 pixels
+**ResizeToFit** _[Boolean]_ - Resize the window to fit the contents of the window
+**StatusAreaShow** _[Boolean]_ - Show the status area in the target window
+**StatusAreaHide** _[Boolean]_ - Hide the status area in the target window
+**WindowTitle** _[String]_ - Set the name of the target window
 
+### UpdateMultiple
 
+**Example:** `# ( "UpdateMultiple" ; TRUE )`
 
+**Value Type:** Boolean
 
+**Description:** This will allow the CRUD Script to update all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
 
+### DeleteMultiple
+
+**Example:** `# ( "DeleteMultiple" ; TRUE )`
+
+**Value Type:** Boolean
+
+**Description:** This will allow the CRUD Script to delete all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
+
+### UseFoundSet
+
+**Example:** `# ( "UseFoundSet" ; TRUE )`
+
+**Value Type:** Boolean
+
+**Description:** This will use the current found set of records instead of performing a search.
+
+### ShowDialogs
+
+**Example:** `# ( "ShowDialogs" ; TRUE )`
+
+**Value Type:** Boolean
+
+**Description:** This will allow any dialogs that are specified for debugging purposes to appear to the user.
 
 
 
