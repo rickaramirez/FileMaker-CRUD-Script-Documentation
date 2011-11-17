@@ -229,6 +229,28 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 **Description:** A dictionary of human field names and values to be updated in the target record.  Multiple dictionary items should be specified to update multiple fields.
 
+### SearchRequests
+
+**Example:** `# ( "SearchRequests" ; # ( "Request" ; # ( "First Name" ; "Michael") ) )`
+
+**Value Type:** Dictionary
+
+**Description:** A dictionary of search requests to be performed.  Each request is defined by a "Request" dictionary, and multiple can be specified within the "SearchRequests" dictionary.  Each Request can contain multiple search criteria for the search, and can also contain an optional `# ( "Omit" ; TRUE )` parameter to specify the request as an omit request.
+
+### ViewDict
+
+**Example:** `# ( "ViewDict" ; # ( "NewWindow" ; TRUE ) & # ( "WindowTitle" ; "This New Window" ) )`
+
+**Value Type:** Dictionary
+
+**Description:** A dictionary to specify the parameters for the view function.  The valid parameters that can be specified are as follows:
+
+* **DestinationLayoutID** __"[String]"__ - The FileMaker internal ID of the destination layout
+* **DestinationLayoutName** __"[String]"__ - The name of the destination layout
+* **NewWindow** __"[Boolean]"__ - The name of the destination layout
+* **DestinationLayoutName** __"[String]"__ - The name of the destination layout
+
+
 
 
 
