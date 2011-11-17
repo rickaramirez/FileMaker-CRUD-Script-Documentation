@@ -1,3 +1,5 @@
+<link href="https://raw.github.com/clownfart/Markdown-CSS/master/markdown.css" rel="stylesheet"></link>
+
 # Implementation and use of the CRUD Script functionality
 
 ## Overview of CRUDFV
