@@ -1,14 +1,12 @@
-<link href="https://raw.github.com/clownfart/Markdown-CSS/master/markdown.css" rel="stylesheet"></link>
-
 # Implementation and use of the CRUD Script functionality
 
-## Overview of CRUDFV
+## Overview of CRUD
 
 CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we've made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.
 
-With the CRUDFV script, we have the ability execute those processes in a standardized, consistent, controlled and rapid way, all while writing less code, making less layouts, and making less table occurrences.  The CRUDFV script essentially serves as an API (or Application Programming Interface) for each file, allowing you to fully interact with the data in the file without having to rewrite those interactions every time you want to activate them.
+With the CRUD script, we have the ability execute those processes in a standardized, consistent, controlled and rapid way, all while writing less code, making less layouts, and making less table occurrences.  The CRUD script essentially serves as an API (or Application Programming Interface) for each file, allowing you to fully interact with the data in the file without having to rewrite those interactions every time you want to activate them.
 
-## The Six Methods of CRUDFV
+## The Six Methods of CRUD
 
 ### Create
 
@@ -188,3 +186,72 @@ For file a01_PERSON:
 	    )
 
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
+
+## CRUD Dictionary Parameters
+
+### TableName
+
+**Example:** `# ( "TableName" ; "A_PERSON" )`
+
+**Value Type:** String
+
+**Description:** The name of the target table for the operation.
+
+### TableID
+
+**Example:** `# ( "TableID" ; 1065149 )`
+
+**Value Type:** Number
+
+**Description:** The FileMaker internal ID of the target table for the operation.  This can be identified by using the following calculation: `FM_Name_ID ( Get ( LayoutTableName ) ; "T" ; "" ; "" )` when you are on a layout based on the target table.  The resulting ID is the unique FileMaker internal ID to identify the table, and will endure a table name change.
+
+### Method
+
+**Example:** `# ( "Method" ; "R" )`
+
+**Value Type:** String
+
+**Description:** The abbreviation of the method to be performed.  Values can be C (Create), R (Read), U (Update), D (Delete), F (Find) or V (View).
+
+### ReadFieldList
+
+**Example:** `# ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )`
+
+**Value Type:** List
+
+**Description:** A return-separated list of human names for the fields you want to be returned as the script result.  If this value is not specified, no values will be returned.  If you want all available criteria to be returned for the record, you can pass in a dictionary item "All" as such: `# ( "ReadFieldList" ; # ( "All" ; TRUE ))`.
+
+### UpdateDict
+
+**Example:** `# ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )`
+
+**Value Type:** Dictionary
+
+**Description:** A dictionary of human field names and values to be updated in the target record.  Multiple dictionary items should be specified to update multiple fields.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
