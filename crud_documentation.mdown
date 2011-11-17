@@ -229,6 +229,15 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 ## CRUD Dictionary Parameters
 
+Each parameter listed in the following section is designed to be handled by the CRUD script.  You can pass any of these parameters in, but keep in mind that some of them are mutually exclusive, and we will develop the documentation moving forward to outline the conflicts.
+
+**Important:** To pass any of these parameters in, you must first define a super dictionary CRUD and insert the following parameters within it.  For example:
+
+	# ( "CRUD" ; 
+				# ( "TableName" ; "A_PERSON" )
+			& # ( "Method" ; "R")
+		)
+
 ### TableName
 
 **Example:** `# ( "TableName" ; "A_PERSON" )`  
