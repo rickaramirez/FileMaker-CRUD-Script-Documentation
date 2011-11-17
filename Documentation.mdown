@@ -2,21 +2,35 @@
 
 ## Table of Contents
 
-1. [Overview of CRUD](#overview_of_crud)
-2. [The Six Method of CRUD](#the_six_methods_of_crud)
-  2.1  [Create](#create)
-  2.1  [Read](#read)
-  2.1  [Update](#update)
-  2.1  [Delete](#delete)
-  2.1  [Find](#find)
-  2.1  [View](#view)
-3. [CRUD Dictionary Parameters](#crud_dictionary_parameters)
+1. [Overview of CRUD](#overview_of_crud)  
+2. [The Six Method of CRUD](#the_six_methods_of_crud)  
+  2.1  [Create](#create)  
+  2.2  [Read](#read)  
+  2.3  [Update](#update)  
+  2.4  [Delete](#delete)  
+  2.5  [Find](#find)  
+  2.6  [View](#view)  
+3. [CRUD Dictionary Parameters](#crud_dictionary_parameters)  
+  3.1  [TableName](#tablename)  
+  3.2  [TableID](#tableid)  
+  3.3  [Method](#method)  
+  3.4  [ReadFieldList](#readfieldlist)  
+  3.5  [UpdateDict](#updatedict)  
+  3.6  [SearchRequests](#searchrequests)  
+  3.7  [ViewDict](#viewdict)  
+  3.8  [UpdateMultiple](#updatemultiple)  
+  3.9  [DeleteMultiple](#deletemultiple)  
+  3.10  [UseFoundSet](#usefoundset)  
+  3.11  [ShowDialogs](#showdialogs)  
+  3.12  [UseWindowName](#usewindowname)  
 
 ## Overview of CRUD
 
 CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we've made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.
 
 With the CRUD script, we have the ability execute those processes in a standardized, consistent, controlled and rapid way, all while writing less code, making less layouts, and making less table occurrences.  The CRUD script essentially serves as an API (or Application Programming Interface) for each file, allowing you to fully interact with the data in the file without having to rewrite those interactions every time you want to activate them.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ## The Six Methods of CRUD
 
@@ -45,6 +59,8 @@ For file a01_PERSON:
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
 	
 This will create a new record in A_PERSON, set the field First Name with the value "Michael", Last Name with "Phillips", and Gender with "M", and then return a script result with the Worker Name FML and UID values.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 		
 ### Read
 
@@ -72,6 +88,8 @@ For file a01_PERSON:
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
 		
 This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 		
 ### Update
 
@@ -102,6 +120,8 @@ For file a01_PERSON:
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" )
 	
 This will find the record with the key field value (in this case, UID) of "1669688", update the record to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the record has been updated, the script will return a dictionary of values for the record containing Worker Name FML and UID.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 		
 ### Delete
 
@@ -124,6 +144,8 @@ For file a01_PERSON:
 	    )
 	
 This will find the record with the key field value of "1669688" and delete it.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 		
 ### Find
 
@@ -152,6 +174,8 @@ For file a01_PERSON:
 	    )
 	
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field, and will return a result count.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### View
 
@@ -187,6 +211,8 @@ For file a01_PERSON:
 
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ## CRUD Dictionary Parameters
 
 ### TableName
@@ -195,11 +221,15 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 **Value Type:** String  
 **Description:** The name of the target table for the operation.
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### TableID
 
 **Example:** `# ( "TableID" ; 1065149 )`  
 **Value Type:** Number  
 **Description:** The FileMaker internal ID of the target table for the operation.  This can be identified by using the following calculation: `FM_Name_ID ( Get ( LayoutTableName ) ; "T" ; "" ; "" )` when you are on a layout based on the target table.  The resulting ID is the unique FileMaker internal ID to identify the table, and will endure a table name change.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### Method
 
@@ -207,17 +237,23 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 **Value Type:** String  
 **Description:** The abbreviation of the method to be performed.  Values can be C (Create), R (Read), U (Update), D (Delete), F (Find) or V (View).
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### ReadFieldList
 
 **Example:** `# ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )`  
 **Value Type:** List  
 **Description:** A return-separated list of human names for the fields you want to be returned as the script result.  If this value is not specified, no values will be returned.  If you want all available criteria to be returned for the record, you can pass in a dictionary item "All" as such: `# ( "ReadFieldList" ; # ( "All" ; TRUE ))`.
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### UpdateDict
 
 **Example:** `# ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )`  
 **Value Type:** Dictionary  
 **Description:** A dictionary of human field names and values to be updated in the target record.  Multiple dictionary items should be specified to update multiple fields.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### SearchRequests
 
@@ -226,6 +262,8 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 **Description:** A dictionary of search requests to be performed.  Each request is defined by a "Request" dictionary, and multiple can be specified within the "SearchRequests" dictionary.  Each Request can contain multiple search criteria for the search, and can also contain an optional `# ( "Omit" ; TRUE )` parameter to specify the request as an omit request.
 
 Additionally, if you would like to find one record using the primary key value, you can pass in a dictionary item in "SearchRequests" as such: `# ( "ID" ; "1669688")`.  This command will return to you one and only one record. 
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### ViewDict
 
@@ -246,11 +284,15 @@ Additionally, if you would like to find one record using the primary key value, 
 **StatusAreaHide** _[Boolean]_ - Hide the status area in the target window  
 **WindowTitle** _[String]_ - Set the name of the target window  
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### UpdateMultiple
 
 **Example:** `# ( "UpdateMultiple" ; TRUE )`  
 **Value Type:** Boolean  
 **Description:** This will allow the CRUD Script to update all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### DeleteMultiple
 
@@ -258,11 +300,15 @@ Additionally, if you would like to find one record using the primary key value, 
 **Value Type:** Boolean  
 **Description:** This will allow the CRUD Script to delete all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### UseFoundSet
 
 **Example:** `# ( "UseFoundSet" ; TRUE )`  
 **Value Type:** Boolean  
 **Description:** This will use the current found set of records instead of performing a search.  
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 ### ShowDialogs
 
@@ -270,11 +316,15 @@ Additionally, if you would like to find one record using the primary key value, 
 **Value Type:** Boolean  
 **Description:** This will allow any dialogs that are specified for debugging purposes to appear to the user.
 
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
 ### UseWindowName
 
 **Example:** `# ( "UseWindowName" ; "This Window Name" )`  
 **Value Type:** String  
 **Description:** This will have the script target a specific window instead of using either the current window or any new windows made.
+
+[^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
 
 
