@@ -53,6 +53,7 @@ A Create call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "C" )
 	& # ( "UpdateDict" ; 
@@ -61,7 +62,8 @@ For file a01_PERSON:
 		& # ( "Gender" ; "M" )
 		)
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
-	
+	)
+
 This will create a new record in A_PERSON, set the field First Name with the value "Michael", Last Name with "Phillips", and Gender with "M", and then return a script result with the Worker Name FML and UID values.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
@@ -81,6 +83,7 @@ A Read call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "R" )
 	& # ( "SearchParameters" ;
@@ -90,7 +93,8 @@ For file a01_PERSON:
 	      )
 	    )
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
-		
+	)
+
 This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
@@ -111,6 +115,7 @@ An Update call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "U" )
 	& # ( "SearchParameters" ;
@@ -122,7 +127,8 @@ For file a01_PERSON:
 	  	& # ( "Gender" ; "M" )
 	  	)	
 	& # ( "ReadFieldList" ; "Worker Name FML¶UID" )
-	
+	)
+
 This will find the record with the key field value (in this case, UID) of "1669688", update the record to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the record has been updated, the script will return a dictionary of values for the record containing Worker Name FML and UID.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
@@ -141,12 +147,14 @@ An Update call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "D" )
 	& # ( "SearchParameters" ;
 	      # ( "ID" ; "1669688" )
 	    )
-	
+	)
+
 This will find the record with the key field value of "1669688" and delete it.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
@@ -165,6 +173,7 @@ A Find call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "D" )
 	& # ( "SearchParameters" ;
@@ -176,7 +185,7 @@ For file a01_PERSON:
 	        & # ( "Omit" ; 1 )
 	        ) 
 	    )
-	
+	)
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field, and will return a result count.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
@@ -196,6 +205,7 @@ A Find call would look like this:
 
 For file a01_PERSON:
 
+	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
 	& # ( "Method" ; "D" )
 	& # ( "SearchParameters" ;
@@ -212,7 +222,7 @@ For file a01_PERSON:
       & # ( "NewWindow" ; TRUE )
       & # ( "WindowAlignCenter" ; TRUE )
 	    )
-
+	)
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
