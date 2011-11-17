@@ -2,9 +2,15 @@
 
 ## Table of Contents
 
-1. [Overview of CRUD](#overview-of-crud)
-2. [The Six Method of CRUD](#the-six-methods-of-crud)
-3. [CRUD Dictionary Parameters](#crud-dictionary-parameters)
+1. [Overview of CRUD](#overview_of_crud)
+2. [The Six Method of CRUD](#the_six_methods_of_crud)
+  2.1  [Create](#create)
+  2.1  [Read](#read)
+  2.1  [Update](#update)
+  2.1  [Delete](#delete)
+  2.1  [Find](#find)
+  2.1  [View](#view)
+3. [CRUD Dictionary Parameters](#crud_dictionary_parameters)
 
 ## Overview of CRUD
 
@@ -97,7 +103,7 @@ For file a01_PERSON:
 	
 This will find the record with the key field value (in this case, UID) of "1669688", update the record to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the record has been updated, the script will return a dictionary of values for the record containing Worker Name FML and UID.
 		
-### Update
+### Delete
 
 **Method:** D  
 **Sub-operations:** none  
@@ -181,7 +187,7 @@ For file a01_PERSON:
 
 This will find all records that have "Brooklyn" in the City field that do not have "NY" in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.
 
-## CRUD Dictionary Parameters {#dict-params}
+## CRUD Dictionary Parameters
 
 ### TableName
 
