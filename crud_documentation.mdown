@@ -4,7 +4,7 @@ Version: 1.0
 Author: Michael Phillips  
 Publish Date: November 17, 2011
 
-## Table of Contentszz
+## Table of Contents
 
 1. [Overview of CRUD](#overview_of_crud)  
 2. [The Six Method of CRUD](#the_six_methods_of_crud)  
