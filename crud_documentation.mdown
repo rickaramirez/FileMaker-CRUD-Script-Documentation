@@ -303,14 +303,39 @@ To create a dynamic set of requests based on a list, you can pass in a special r
 
 	# ( "MultiRequest" ;  
 			# ( "[FieldHumanName]" ; "First Name" ) 
-		& # ( "[ListOfValues]" ; $ListOfFirstNames ) 
+		& # ( "[ListOfValues]" ; "Michael¶Dan¶Andrew¶Patrick" ) 
 		& # ( "[Omit]" ; FALSE )
 		
 		& # ( "Last Name" ; "Phillips" )
 		& # ( "Gender" ; "M" ) 
 	)
 
-This dictionary has three required parameters: [FieldHumanName], [ListOfValues] and [Omit].  [FieldHumanName] is the single field that you want to perform the multiple searches on.  [ListOfValues] is the carriage-return separated list of values that you want to create requests for.  
+This dictionary has three required parameters: [FieldHumanName], [ListOfValues] and [Omit].  [FieldHumanName] is the single field that you want to perform the multiple searches on.  [ListOfValues] is the carriage-return separated list of values that you want to create requests for.  [Omit] is a parameter that tells whether you want to omit the MultiRequest, and will default to FALSE, so if it isn't specified, all requests will be standard finds.  
+
+The last two dictionary items are standard find requests items, so all resulting requests will also include any extra standard find requests as well.
+
+With the example above, the CRUD script will create the following requests in addition to any other requests you specified within the # ( "SearchParameters" ) dictionary:
+
+		# ( "Request" ; 
+			# ( "First Name" ; "Michael" )
+		& # ( "Last Name" ; "Phillips" )
+		& # ( "Gender" ; "M" )
+		)	
+	& # ( "Request" ; 
+			# ( "First Name" ; "Dan" )
+		& # ( "Last Name" ; "Phillips" )
+		& # ( "Gender" ; "M" )
+		)	
+	& # ( "Request" ; 
+			# ( "First Name" ; "Andrew" )
+		& # ( "Last Name" ; "Phillips" )
+		& # ( "Gender" ; "M" )
+		)	
+	& # ( "Request" ; 
+			# ( "First Name" ; "Patrick" )
+		& # ( "Last Name" ; "Phillips" )
+		& # ( "Gender" ; "M" )
+	)
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
