@@ -1,0 +1,378 @@
+<head>
+	<link href="https://raw.github.com/milaph/Markdown-CSS/master/markdown.css" rel="stylesheet"></link>
+	<title>CRUD Documentation</title>
+</head>
+
+<h1 id="implementation_and_use_of_the_crud_script_functionality">Implementation and use of the CRUD Script functionality</h1>
+
+<p>Version: 1.0 <br />
+Author: Michael Phillips <br />
+Publish Date: November 17, 2011</p>
+
+<h2 id="table_of_contents">Table of Contents</h2>
+
+<ol>
+<li><a href="#overview_of_crud">Overview of CRUD</a>  </li>
+<li><a href="#the_six_methods_of_crud">The Six Method of CRUD</a> <br />
+2.1  <a href="#create">Create</a> <br />
+2.2  <a href="#read">Read</a> <br />
+2.3  <a href="#update">Update</a> <br />
+2.4  <a href="#delete">Delete</a> <br />
+2.5  <a href="#find">Find</a> <br />
+2.6  <a href="#view">View</a>  </li>
+<li><a href="#crud_dictionary_parameters">CRUD Dictionary Parameters</a> <br />
+3.1  <a href="#tablename">TableName</a> <br />
+3.2  <a href="#tableid">TableID</a> <br />
+3.3  <a href="#method">Method</a> <br />
+3.4  <a href="#readfieldlist">ReadFieldList</a> <br />
+3.5  <a href="#updatedict">UpdateDict</a> <br />
+3.6  <a href="#searchrequests">SearchRequests</a> <br />
+3.7  <a href="#viewdict">ViewDict</a> <br />
+3.8  <a href="#updatemultiple">UpdateMultiple</a> <br />
+3.9  <a href="#deletemultiple">DeleteMultiple</a> <br />
+3.10  <a href="#usefoundset">UseFoundSet</a> <br />
+3.11  <a href="#showdialogs">ShowDialogs</a> <br />
+3.12  <a href="#usewindowname">UseWindowName</a>  </li>
+</ol>
+
+<h2 id="overview_of_crud">Overview of CRUD</h2>
+
+<p>CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we&#8217;ve made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.</p>
+
+<p>With the CRUD script, we have the ability execute those processes in a standardized, consistent, controlled and rapid way, all while writing less code, making less layouts, and making less table occurrences.  The CRUD script essentially serves as an API (or Application Programming Interface) for each file, allowing you to fully interact with the data in the file without having to rewrite those interactions every time you want to activate them.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h2 id="the_six_methods_of_crud">The Six Methods of CRUD</h2>
+
+<h3 id="create">Create</h3>
+
+<p><strong>Method:</strong> C <br />
+<strong>Sub-operations:</strong> U, R <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>ReadFieldList</li>
+<li>UpdateDict</li>
+</ul>
+
+<p><strong>Description:</strong> Create will make a new record in the destination table.  Optionally, it will update any fields that you tell it to update, and can optionally return to you a list of values form that new record, such as the resulting Primary Key value.</p>
+
+<p>A Create call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "C" )
+&amp; # ( "UpdateDict" ; 
+    # ( "First Name" ; "Michael" )
+    &amp; # ( "Last Name" ; "Phillips" )    
+    &amp; # ( "Gender" ; "M" )
+    )
+&amp; # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+)
+</code></pre>
+
+<p>This will create a new record in A_PERSON, set the field First Name with the value &#8220;Michael&#8221;, Last Name with &#8220;Phillips&#8221;, and Gender with &#8220;M&#8221;, and then return a script result with the Worker Name FML and UID values.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="read">Read</h3>
+
+<p><strong>Method:</strong> R <br />
+<strong>Sub-operations:</strong> none <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>SearchParameters</li>
+<li>ReadFieldList</li>
+</ul>
+
+<p><strong>Description:</strong> Read will return a dictionary of values for each record in the found set.</p>
+
+<p>A Read call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "R" )
+&amp; # ( "SearchParameters" ;
+    # ( "Request" ;
+        # ( "Address City" ; "Brooklyn" )
+      &amp; # ( "Address Zip5" ; "11205" )
+      )
+    )
+&amp; # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
+)
+</code></pre>
+
+<p>This will return a dictionary of data with the Worker Name FML and UID of each A_PERSON record in the found set.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="update">Update</h3>
+
+<p><strong>Method:</strong> U <br />
+<strong>Sub-operations:</strong> R <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>SearchParameters</li>
+<li>UpdateDict</li>
+<li>ReadFieldList</li>
+</ul>
+
+<p><strong>Description:</strong> Update will set the specified fields with the specified values for each record in the found set.  By default, the script will only update one record, and if more than one record is in the found set, it will return an error.  If you would like to update multiple records, specify the optional parameter UpdateMultiple as <code>TRUE</code>.</p>
+
+<p>An Update call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "U" )
+&amp; # ( "SearchParameters" ;
+      # ( "ID" ; "1669688" )
+    )
+&amp; # ( "UpdateDict" ; 
+      # ( "First Name" ; "Michael" )
+    &amp; # ( "Last Name" ; "Phillips" )    
+    &amp; # ( "Gender" ; "M" )
+    )   
+&amp; # ( "ReadFieldList" ; "Worker Name FML¶UID" )
+)
+</code></pre>
+
+<p>This will find the record with the key field value (in this case, UID) of &#8220;1669688&#8221;, update the record to have the value &#8220;Michael&#8221; in the First Name field, &#8220;Phillips&#8221; in the Last Name field, and &#8220;M&#8221; in the Gender field.  Once the record has been updated, the script will return a dictionary of values for the record containing Worker Name FML and UID.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="delete">Delete</h3>
+
+<p><strong>Method:</strong> D <br />
+<strong>Sub-operations:</strong> none <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>SearchParameters</li>
+</ul>
+
+<p><strong>Description:</strong> Delete will delete the specified record.  By default, the script will only delete one record, and if more than one record is in the found set, it will return an error.  If you would like to delete multiple records, specify the optional parameter DeleteMultiple as <code>TRUE</code>.</p>
+
+<p>An Update call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "D" )
+&amp; # ( "SearchParameters" ;
+      # ( "ID" ; "1669688" )
+    )
+)
+</code></pre>
+
+<p>This will find the record with the key field value of &#8220;1669688&#8221; and delete it.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="find">Find</h3>
+
+<p><strong>Method:</strong> F <br />
+<strong>Sub-operations:</strong> R <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>SearchParameters</li>
+</ul>
+
+<p><strong>Description:</strong> Find will perform a search in the target table.</p>
+
+<p>A Find call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "D" )
+&amp; # ( "SearchParameters" ;
+      # ( "Request" ;
+          # ( "Address City" ; "Brooklyn" )
+        )
+    &amp; # ( "Request" ;
+          # ( "Address State" ; "NY")
+        &amp; # ( "Omit" ; 1 )
+        ) 
+    )
+)
+</code></pre>
+
+<p>This will find all records that have &#8220;Brooklyn&#8221; in the City field that do not have &#8220;NY&#8221; in the state field, and will return a result count.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="view">View</h3>
+
+<p><strong>Method:</strong> V <br />
+<strong>Sub-operations:</strong> F <br />
+<strong>Applicable parameters:</strong> </p>
+
+<ul>
+<li>SearchParameters</li>
+<li>ViewDict</li>
+</ul>
+
+<p><strong>Description:</strong> Find will perform a search in the target table.</p>
+
+<p>A Find call would look like this:</p>
+
+<p>For file a01_PERSON:</p>
+
+<pre><code># ( "CRUD" ;
+  # ( "TableName" ; "A_PERSON" )
+&amp; # ( "Method" ; "D" )
+&amp; # ( "SearchParameters" ;
+      # ( "Request" ;
+          # ( "Address City" ; "Brooklyn" )
+        )
+    &amp; # ( "Request" ;
+          # ( "Address State" ; "NY")
+        &amp; # ( "Omit" ; 1 )
+        ) 
+    )
+&amp; # ( "ViewParameters" ; 
+    # ( "DestinationLayoutName" ; "A_PERSON Main__" )
+  &amp; # ( "NewWindow" ; TRUE )
+  &amp; # ( "WindowAlignCenter" ; TRUE )
+    )
+)
+</code></pre>
+
+<p>This will find all records that have &#8220;Brooklyn&#8221; in the City field that do not have &#8220;NY&#8221; in the state field.  Once the records are found, it will create a new window, navigate to the A_PERSON Main layout, and align the window to the center of the screen.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h2 id="crud_dictionary_parameters">CRUD Dictionary Parameters</h2>
+
+<p>Each parameter listed in the following section is designed to be handled by the CRUD script.  You can pass any of these parameters in, but keep in mind that some of them are mutually exclusive, and we will develop the documentation moving forward to outline the conflicts.</p>
+
+<p><strong>Important:</strong> To pass any of these parameters in, you must first define a super dictionary CRUD and insert the following parameters within it.  For example:</p>
+
+<pre><code># ( "CRUD" ; 
+      # ( "TableName" ; "A_PERSON" )
+    &amp; # ( "Method" ; "R")
+  )
+</code></pre>
+
+<h3 id="tablename">TableName</h3>
+
+<p><strong>Example:</strong> <code># ( "TableName" ; "A_PERSON" )</code> <br />
+<strong>Value Type:</strong> String <br />
+<strong>Description:</strong> The name of the target table for the operation.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="tableid">TableID</h3>
+
+<p><strong>Example:</strong> <code># ( "TableID" ; 1065149 )</code> <br />
+<strong>Value Type:</strong> Number <br />
+<strong>Description:</strong> The FileMaker internal ID of the target table for the operation.  This can be identified by using the following calculation: <code>FM_Name_ID ( Get ( LayoutTableName ) ; "T" ; "" ; "" )</code> when you are on a layout based on the target table.  The resulting ID is the unique FileMaker internal ID to identify the table, and will endure a table name change.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="method">Method</h3>
+
+<p><strong>Example:</strong> <code># ( "Method" ; "R" )</code> <br />
+<strong>Value Type:</strong> String <br />
+<strong>Description:</strong> The abbreviation of the method to be performed.  Values can be C (Create), R (Read), U (Update), D (Delete), F (Find) or V (View).</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="readfieldlist">ReadFieldList</h3>
+
+<p><strong>Example:</strong> <code># ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )</code> <br />
+<strong>Value Type:</strong> List <br />
+<strong>Description:</strong> A return-separated list of human names for the fields you want to be returned as the script result.  If this value is not specified, no values will be returned.  If you want all available criteria to be returned for the record, you can pass in a dictionary item &#8220;All&#8221; as such: <code># ( "ReadFieldList" ; # ( "All" ; TRUE ))</code>.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="updatedict">UpdateDict</h3>
+
+<p><strong>Example:</strong> <code># ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )</code> <br />
+<strong>Value Type:</strong> Dictionary <br />
+<strong>Description:</strong> A dictionary of human field names and values to be updated in the target record.  Multiple dictionary items should be specified to update multiple fields.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="searchrequests">SearchRequests</h3>
+
+<p><strong>Example:</strong> <code># ( "SearchRequests" ; # ( "Request" ; # ( "First Name" ; "Michael") ) )</code> <br />
+<strong>Value Type:</strong> Dictionary <br />
+<strong>Description:</strong> A dictionary of search requests to be performed.  Each request is defined by a &#8220;Request&#8221; dictionary, and multiple can be specified within the &#8220;SearchRequests&#8221; dictionary.  Each Request can contain multiple search criteria for the search, and can also contain an optional <code># ( "Omit" ; TRUE )</code> parameter to specify the request as an omit request.</p>
+
+<p>Additionally, if you would like to find one record using the primary key value, you can pass in a dictionary item in &#8220;SearchRequests&#8221; as such: <code># ( "ID" ; "1669688")</code>.  This command will return to you one and only one record. </p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="viewdict">ViewDict</h3>
+
+<p><strong>Example:</strong> <code># ( "ViewDict" ; # ( "NewWindow" ; TRUE ) &amp; # ( "WindowTitle" ; "This New Window" ) )</code> <br />
+<strong>Value Type:</strong> Dictionary <br />
+<strong>Description:</strong> A dictionary to specify the parameters for the view function.  The valid parameters that can be specified are as follows:</p>
+
+<p><strong>DestinationLayoutID</strong> <em>[String]</em> - The FileMaker internal ID of the destination layout <br />
+<strong>DestinationLayoutName</strong> <em>[String]</em> - The name of the destination layout <br />
+<strong>NewWindow</strong> <em>[Boolean]</em> - The name of the destination layout <br />
+<strong>WindowAlignCenter</strong> <em>[Boolean]</em> - Center the target window on the screen <br />
+<strong>WindowAlignLeft</strong> <em>[Boolean]</em> - Snap the window to the left side of the screen <br />
+<strong>WindowAlignRight</strong> <em>[Boolean]</em> - Snap the window to the right side of the screen <br />
+<strong>WindowAlignTop</strong> <em>[Boolean]</em> - Snap the window to the top of the screen <br />
+<strong>WindowCascade</strong> <em>[Boolean]</em> - Move the target window to the right 22 pixels and down 22 pixels <br />
+<strong>ResizeToFit</strong> <em>[Boolean]</em> - Resize the window to fit the contents of the window <br />
+<strong>StatusAreaShow</strong> <em>[Boolean]</em> - Show the status area in the target window <br />
+<strong>StatusAreaHide</strong> <em>[Boolean]</em> - Hide the status area in the target window <br />
+<strong>WindowTitle</strong> <em>[String]</em> - Set the name of the target window  </p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="updatemultiple">UpdateMultiple</h3>
+
+<p><strong>Example:</strong> <code># ( "UpdateMultiple" ; TRUE )</code> <br />
+<strong>Value Type:</strong> Boolean <br />
+<strong>Description:</strong> This will allow the CRUD Script to update all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="deletemultiple">DeleteMultiple</h3>
+
+<p><strong>Example:</strong> <code># ( "DeleteMultiple" ; TRUE )</code> <br />
+<strong>Value Type:</strong> Boolean <br />
+<strong>Description:</strong> This will allow the CRUD Script to delete all records in the found set.  This parameter is required for this to happen because we want to make sure that this possibly dangerous functionality is intentionally used.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="usefoundset">UseFoundSet</h3>
+
+<p><strong>Example:</strong> <code># ( "UseFoundSet" ; TRUE )</code> <br />
+<strong>Value Type:</strong> Boolean <br />
+<strong>Description:</strong> This will use the current found set of records instead of performing a search.  </p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="showdialogs">ShowDialogs</h3>
+
+<p><strong>Example:</strong> <code># ( "ShowDialogs" ; TRUE )</code> <br />
+<strong>Value Type:</strong> Boolean <br />
+<strong>Description:</strong> This will allow any dialogs that are specified for debugging purposes to appear to the user.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
+
+<h3 id="usewindowname">UseWindowName</h3>
+
+<p><strong>Example:</strong> <code># ( "UseWindowName" ; "This Window Name" )</code> <br />
+<strong>Value Type:</strong> String <br />
+<strong>Description:</strong> This will have the script target a specific window instead of using either the current window or any new windows made.</p>
+
+<p><a href="#implementation_and_use_of_the_crud_script_functionality">^ Back to Top</a></p>
