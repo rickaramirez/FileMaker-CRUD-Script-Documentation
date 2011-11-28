@@ -273,9 +273,76 @@ Each parameter listed in the following section is designed to be handled by the 
 
 ### ReadResponseLists
 
-**Example:** `# ( "ReadResponseLists" ; "First Name¶Last Name¶Gender" )`  
-**Value Type:** List  
-**Description:** A return-separated list of human names for the fields you want to be returned as the script result.  If this value is not specified, no values will be returned.  If you want all available criteria to be returned for the record, you can pass in a dictionary item "All" as such: `# ( "ReadFieldList" ; # ( "All" ; TRUE ))`.
+**Example:** `# ( "ReadResponseLists" ; # ( "Response" ; # ( "CriterionKey" ; "Email" ) ) )`  
+**Value Type:** Dictionary  
+**Description:** A dictionary of lists to be returned of values that are read back from the CRUD script.
+
+For instance, if you had as a part of your ReadFieldList the field Email, and you wanted those values returned to you as a carriage-return-separated list in addition to the Record dictionaries, you can request that list here.  The parameter # ( "CriterionKey" ) is the human name of one of the criteria that you requested in your read field list. **Note that you cannot request a ReadResponseList for a criterion that you did not request in your ReadFieldList**
+
+In your result dictionary, you will see the following dictionary contained:
+
+	# ( "ResponseLists" ; 
+			# ( "Emails" ; "mphillips@nyhtc.org¶mphillips@nyhtc.org¶dshockley@nyhtc.org¶kmrudmin@gmail.com")
+	)
+
+The response lists can be referenced by their CriterionKey in the CRUD Script result dictionary ResponseLists.  Thusly, you can use your resulting Email list by referencing `DictGet ( DictGet ( Get ( ScriptResult ) ; "ResponseLists" ) ; "Emails" )`
+
+#### Delimiter
+
+You have the option of also passing in a delimiter other than a carriage return to separate the returned list.  You can specify this as such:
+
+	# ( "ReadResponseLists" ; 
+			# ( "Response" ;
+					# ( "CriterionName" ; "First Name" )
+				&	# ( "Delimiter" ; ", " )
+			)
+	)
+
+This will return to you:
+
+	# ( "ResponseLists" ; 
+			# ( "First Name" ; "Michael, Michael, Dan, Katrina")
+	)
+	
+#### UniqueValuesOnly
+
+You have the option of also passing in a switch that will tell the CRUD script to return to you only the unique values in the list.  You can specify this as such:
+
+	# ( "ReadResponseLists" ; 
+			# ( "Response" ;
+					# ( "CriterionName" ; "First Name" )
+				&	# ( "UniqueValuesOnly" ; TRUE )
+			)
+	)
+
+This will return to you:
+
+	# ( "ResponseLists" ; 
+			# ( "First Name" ; "Michael, Dan, Katrina")
+	)
+	
+#### OmitBlanks
+
+You have the option of also passing in a switch that will tell the CRUD script to return to you only values that are not blank.  You can specify this as such:
+
+	# ( "ReadResponseLists" ; 
+			# ( "Response" ;
+					# ( "CriterionName" ; "First Name" )
+				&	# ( "OmitBlanks" ; TRUE )
+			)
+	)
+
+This will return to you:
+
+	# ( "ResponseLists" ; 
+			# ( "First Name" ; "Michael, Dan, Katrina")
+	)
+
+Instead of, say:
+
+	# ( "ResponseLists" ; 
+			# ( "First Name" ; "Michael, , , Dan, Katrina")
+	)
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
