@@ -6,15 +6,15 @@ Publish Date: November 17, 2011
 
 ## Table of Contents
 
-1. [Overview of CRUD](#overview_of_crud)  
-2. [The Six Method of CRUD](#the_six_methods_of_crud)  
+1. [Overview of CRUD](#overview)  
+2. [The Six Method of CRUD](#six-methods)  
   2.1  [Create](#create)  
   2.2  [Read](#read)  
   2.3  [Update](#update)  
   2.4  [Delete](#delete)  
   2.5  [Find](#find)  
   2.6  [View](#view)  
-3. [CRUD Dictionary Parameters](#crud_dictionary_parameters)  
+3. [CRUD Dictionary Parameters](#crud-dictionary-parameters)  
   3.1  [TableName](#tablename)  
   3.2  [TableID](#tableid)  
   3.3  [Method](#method)  
@@ -31,6 +31,9 @@ Publish Date: November 17, 2011
   3.12  [ShowDialogs](#showdialogs)  
   3.13  [UseWindowName](#usewindowname)  
 
+<div id="overview">
+</div>
+
 ## Overview of CRUD
 
 CRUD stands for Create, Read, Update and Delete.  These four functions, along with the two additions we've made to the standard CRUD concept, Find and View, comprise the vast majority of the scripting functionality that we perform on a daily basis, from the most basic button script to the most complex data processing scripts.
@@ -39,6 +42,9 @@ With the CRUD script, we have the ability execute those processes in a standardi
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="six-methods">
+</div>
+				
 ## The Six Methods of CRUD
 
 ### Create
@@ -141,7 +147,10 @@ For file a01_PERSON:
 This will find the record with the key field value (in this case, UID) of "1669688", update the record to have the value "Michael" in the First Name field, "Phillips" in the Last Name field, and "M" in the Gender field.  Once the record has been updated, the script will return a dictionary of values for the record containing Worker Name FML and UID.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
-		
+
+<div id="delete">
+</div>
+				
 ### Delete
 
 **Method:** D  
@@ -168,6 +177,9 @@ This will find the record with the key field value of "1669688" and delete it.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 		
+<div id="find">
+</div>
+				
 ### Find
 
 **Method:** F  
@@ -199,6 +211,9 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="view">
+</div>
+				
 ### View
 
 **Method:** V  
@@ -236,6 +251,9 @@ This will find all records that have "Brooklyn" in the City field that do not ha
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="crud-dictionary-parameters">
+</div>
+				
 ## CRUD Dictionary Parameters
 
 Each parameter listed in the following section is designed to be handled by the CRUD script.  You can pass any of these parameters in, but keep in mind that some of them are mutually exclusive, and we will develop the documentation moving forward to outline the conflicts.
@@ -247,6 +265,9 @@ Each parameter listed in the following section is designed to be handled by the 
 	    & # ( "Method" ; "R")
 	  )
 
+<div id="tablename">
+</div>
+				
 ### TableName
 
 **Example:** `# ( "TableName" ; "A_PERSON" )`  
@@ -255,6 +276,9 @@ Each parameter listed in the following section is designed to be handled by the 
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="tableid">
+</div>
+				
 ### TableID
 
 **Example:** `# ( "TableID" ; 1065149 )`  
@@ -263,6 +287,9 @@ Each parameter listed in the following section is designed to be handled by the 
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="method">
+</div>
+				
 ### Method
 
 **Example:** `# ( "Method" ; "R" )`  
@@ -271,6 +298,9 @@ Each parameter listed in the following section is designed to be handled by the 
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="readfieldlist">
+</div>
+				
 ### ReadFieldList
 
 **Example:** `# ( "ReadFieldList" ; "First Name¶Last Name¶Gender" )`  
@@ -279,6 +309,9 @@ Each parameter listed in the following section is designed to be handled by the 
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="readresponselists">
+</div>
+				
 ### ReadResponseLists
 
 **Example:** `# ( "ReadResponseLists" ; # ( "Response" ; # ( "CriterionKey" ; "Email" ) ) )`  
@@ -295,6 +328,9 @@ In your result dictionary, you will see the following dictionary contained:
 
 The response lists can be referenced by their CriterionKey in the CRUD Script result dictionary ResponseLists.  Thusly, you can use your resulting Email list by referencing `DictGet ( DictGet ( Get ( ScriptResult ) ; "ResponseLists" ) ; "Emails" )`
 
+<div id="delimiter">
+</div>
+				
 #### Delimiter
 
 You have the option of also passing in a delimiter other than a carriage return to separate the returned list.  You can specify this as such:
@@ -312,6 +348,9 @@ This will return to you:
 			# ( "First Name" ; "Michael, Michael, Dan, Katrina")
 	)
 	
+<div id="uniquevaluesonly">
+</div>
+				
 #### UniqueValuesOnly
 
 You have the option of also passing in a switch that will tell the CRUD script to return to you only the unique values in the list.  You can specify this as such:
@@ -329,6 +368,9 @@ This will return to you:
 			# ( "First Name" ; "Michael, Dan, Katrina")
 	)
 	
+<div id="omitblanks">
+</div>
+				
 #### OmitBlanks
 
 You have the option of also passing in a switch that will tell the CRUD script to return to you only values that are not blank.  You can specify this as such:
@@ -354,6 +396,9 @@ Instead of, say:
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="updatedict">
+</div>
+				
 ### UpdateDict
 
 **Example:** `# ( "UpdateDict" ; # ( "First Name" ; "Michael" ) )`  
@@ -362,12 +407,18 @@ Instead of, say:
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="searchrequests">
+</div>
+				
 ### SearchRequests
 
 **Example:** `# ( "SearchRequests" ; # ( "Request" ; # ( "First Name" ; "Michael") ) )`  
 **Value Type:** Dictionary  
 **Description:** A dictionary of search requests to be performed.  Each request is defined by a "Request" dictionary, and multiple can be specified within the "SearchRequests" dictionary.  Each Request can contain multiple search criteria for the search, and can also contain an optional `# ( "Omit" ; TRUE )` parameter to specify the request as an omit request.
 
+<div id="primarykey">
+</div>
+				
 #### [PrimaryKey]
 
 Additionally, if you would like to find one record using the primary key value, you can pass in a dictionary item in "SearchRequests" as such:
@@ -376,6 +427,9 @@ Additionally, if you would like to find one record using the primary key value, 
 
 This command will return to you one and only one record. 
 
+<div id="multirequest">
+</div>
+				
 #### MultiRequest
 
 To create a dynamic set of requests based on a list, you can pass in a special request called "MultiRequest" as such: 
@@ -418,6 +472,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="viewdict">
+</div>
+				
 ### ViewDict
 
 **Example:** `# ( "ViewDict" ; # ( "NewWindow" ; TRUE ) & # ( "WindowTitle" ; "This New Window" ) )`  
@@ -439,6 +496,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="updatemultiple">
+</div>
+				
 ### UpdateMultiple
 
 **Example:** `# ( "UpdateMultiple" ; TRUE )`  
@@ -447,6 +507,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="deletemultiple">
+</div>
+				
 ### DeleteMultiple
 
 **Example:** `# ( "DeleteMultiple" ; TRUE )`  
@@ -455,6 +518,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="usefoundset">
+</div>
+				
 ### UseFoundSet
 
 **Example:** `# ( "UseFoundSet" ; TRUE )`  
@@ -463,6 +529,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="showdialogs">
+</div>
+				
 ### ShowDialogs
 
 **Example:** `# ( "ShowDialogs" ; TRUE )`  
@@ -471,6 +540,9 @@ With the example above, the CRUD script will create the following requests in ad
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
 
+<div id="usewindowname">
+</div>
+				
 ### UseWindowName
 
 **Example:** `# ( "UseWindowName" ; "This Window Name" )`  
