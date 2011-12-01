@@ -378,7 +378,7 @@ This command will return to you one and only one record.
 To create a dynamic set of requests based on a list, you can pass in a special request called "MultiRequest" as such: 
 
 	# ( "MultiRequest" ;  
-			# ( "[FieldHumanName]" ; "First Name" ) 
+			# ( "[FieldTitle]" ; "First Name" ) 
 		& # ( "[ListOfValues]" ; "Michael¶Dan¶Andrew¶Patrick" ) 
 		& # ( "[Omit]" ; FALSE )
 		
