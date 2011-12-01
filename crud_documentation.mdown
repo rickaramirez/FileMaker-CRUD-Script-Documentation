@@ -70,6 +70,9 @@ For file a01_PERSON:
 This will create a new record in A_PERSON, set the field First Name with the value "Michael", Last Name with "Phillips", and Gender with "M", and then return a script result with the Worker Name FML and UID values.
 
 [^ Back to Top](#implementation_and_use_of_the_crud_script_functionality)
+
+<div id="read">
+</div>
 		
 ### Read
 
