@@ -70,7 +70,7 @@ For file a01_PERSON:
 		& # ( "Last Name" ; "Phillips" )	
 		& # ( "Gender" ; "M" )
 		)
-	& # ( "ReadFieldList" ; "Worker Name FML&para;UID" ) 
+	& # ( "ReadFieldList" ; "Worker Name FML¶UID" ) 
 	)
 
 This will create a new record in A_PERSON, set the field First Name with the value "Michael", Last Name with "Phillips", and Gender with "M", and then return a script result with the Worker Name FML and UID values.
