@@ -202,7 +202,7 @@ For file a01_PERSON:
 	          # ( "Address City" ; "Brooklyn" )
 	        )
 	    & # ( "Request" ;
-	          # ( "Address State" ; "NY")
+	          # ( "Address State" ; "NY" )
 	        & # ( "Omit" ; 1 )
 	        ) 
 	    )
