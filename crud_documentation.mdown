@@ -196,7 +196,7 @@ For file a01_PERSON:
 
 	# ( "CRUD" ;
 	  # ( "TableName" ; "A_PERSON" )
-	& # ( "Method" ; "D" )
+	& # ( "Method" ; "F" )
 	& # ( "SearchRequests" ;
 	      # ( "Request" ;
 	          # ( "Address City" ; "Brooklyn" )
